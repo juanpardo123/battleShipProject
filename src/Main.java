@@ -19,8 +19,8 @@ public class Main {
 
 
 
-            ///System.out.println(game.getTargets());
-            //System.out.println(game.getTargetsInt());
+            System.out.println(game.getTargets());
+            System.out.println(game.getTargetsInt());
 
             //printIntArray(game.getGrid());
             String input = game.getUserInput("Select a column");

@@ -28,7 +28,7 @@ public class Battleship {
                 }
             }
             if(hits.indexOf(false) == -1) {
-                System.out.println("You sank " + Name);
+                System.out.println("You sank The " + Name);
                 sunk = true;
             }
         }
