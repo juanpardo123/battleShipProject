@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        GameHelper game = new GameHelper(3,3);
+        BattleshipGame game = new BattleshipGame(3,3);
         int turns = 0;
         int maxturns = 25;
 
@@ -20,13 +20,8 @@ public class Main {
         while(runningGame) {
 
 
-
-           // System.out.println(game.getTargets());
-           // System.out.println(game.targets);
-           System.out.println(game.getTargetsInt());
-
             //printIntArray(game.getGrid());
-            String input = game.getUserInput("Select a column");
+            String input = game.helper.getUserInput("Select a column");
             System.out.println("-------------------------------------------------------------------------------");
             String action = game.gameMove(input);
 
