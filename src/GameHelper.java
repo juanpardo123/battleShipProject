@@ -31,9 +31,9 @@ public class GameHelper {
 
         for(int i = 0; i < numShips; i++){
             ArrayList<String> ship = placeStartup(shipSize);
-
+            ArrayList<Integer> locationShip = shipToLocation(ship);
             targetsGrouped.add(ship);
-            Battleship ship1 = new Battleship(ship,randomName());
+            Battleship ship1 = new Battleship(locationShip,randomName());
             activeShips.add(ship1);
            for(String e: ship) {
             targetsAlpha.add(e);
@@ -240,10 +240,14 @@ public class GameHelper {
     public String gameMove(String move){
         int index = alphaToIndex(move);
 
+
         if(index < 0){
             return "Invalid input please try again";
         }
         if(gameGrid[index] == 0){
+            for(Battleship e: activeShips){
+                e.checkHit(index);
+            }
             if(grid[index] == 1){
                 gameGrid[index] = 2;
 
@@ -262,6 +266,15 @@ public class GameHelper {
 
     public ArrayList<ArrayList> getTargetsGrouped() {
         return targetsGrouped;
+    }
+
+    private ArrayList<Integer> shipToLocation(ArrayList<String> ship){
+            ArrayList<Integer> location = new ArrayList<>();
+            for(String e: ship){
+
+                location.add(alphaToIndex(e));
+            }
+        return location;
     }
 
     //end getIncrement

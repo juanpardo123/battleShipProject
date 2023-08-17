@@ -2,22 +2,23 @@ import java.util.ArrayList;
 
 
 public class Battleship {
-    ArrayList<String> location;
+    ArrayList<Integer> location;
     ArrayList<Boolean> hits = new ArrayList<Boolean>();
 
     String Name;
     boolean sunk = false;
-    public Battleship(ArrayList<String> coordinates, String name){
+    public Battleship(ArrayList<Integer> coordinates, String name){
         location = coordinates;
          Name = name;
-         for(String e: location){
+         for(Integer e: location){
              hits.add(false);
          }
 
     }
     public void checkHit(int index) {
         if (!sunk) {
-            if (hits.indexOf(false) > 0) {
+
+            if (hits.indexOf(false) != -1) {
 
                 int hitsIndex = location.indexOf(index);
                 if (hitsIndex < 0) {
@@ -25,7 +26,8 @@ public class Battleship {
                 } else {
                     hits.set(hitsIndex, true);
                 }
-            } else {
+            }
+            if(hits.indexOf(false) == -1) {
                 System.out.println("You sank " + Name);
                 sunk = true;
             }
