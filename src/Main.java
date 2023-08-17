@@ -14,7 +14,7 @@ public class Main {
         System.out.println("Welcome to the Battleship game");
         System.out.println("");
         System.out.println("-------------------------------------------------------------------------------");
-        System.out.println("Legend: | 0:Unused space | 1:Missed | 2:Hit!!");
+        System.out.println("Legend: | 0:Unused space | 1:Missed | 2:Hit!! | Ships left: " + game.getActiveShips().size());
         printIntArray(game.getGameGrid());
 
         while(runningGame) {
@@ -32,7 +32,7 @@ public class Main {
 
             System.out.println("");
 
-            System.out.println("Legend: | 0:Unused space | 1:Missed | 2:Hit!!");
+            System.out.println("Legend: | 0:Unused space | 1:Missed | 2:Hit!! | Ships left: " + game.getActiveShips().size());
 
             printIntArray(game.getGameGrid());
 
