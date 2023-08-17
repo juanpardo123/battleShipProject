@@ -20,7 +20,8 @@ public class Main {
 
 
             System.out.println(game.getTargets());
-            System.out.println(game.getTargetsInt());
+            System.out.println(game.targets);
+           System.out.println(game.getTargetsInt());
 
             //printIntArray(game.getGrid());
             String input = game.getUserInput("Select a column");
@@ -40,7 +41,7 @@ public class Main {
     public static void printIntArray(int[] array){
 
        int sum = 0;
-       int row = 1;
+       int row = 0;
        System.out.println("--|A||B||C||D||E||F||G|");
        System.out.println("");
         System.out.print(row + " ");
@@ -54,7 +55,7 @@ public class Main {
                     System.out.println("|" + e + "|");
                     row++;
                 sum = 0;
-                if(row < 8) {
+                if(row < 7) {
                     System.out.print(row + " ");
 
                 }

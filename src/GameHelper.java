@@ -23,6 +23,8 @@ public class GameHelper {
     private ArrayList<Battleship> activeShips = new ArrayList<>();
     private final Random random = new Random();
 
+    public ArrayList<ArrayList> targets = new ArrayList<>();
+
     private int startupCount = 0;
 
     public GameHelper(int shipSize, int numShips){
@@ -33,6 +35,7 @@ public class GameHelper {
             ArrayList<String> ship = placeStartup(shipSize);
             ArrayList<Integer> locationShip = shipToLocation(ship);
             targetsGrouped.add(ship);
+            targets.add(locationShip);
             Battleship ship1 = new Battleship(locationShip,randomName());
             activeShips.add(ship1);
            for(String e: ship) {
@@ -190,11 +193,11 @@ public class GameHelper {
         String l1 = String.valueOf(alpha.charAt(0));
         int l2 = Integer.parseInt(String.valueOf(alpha.charAt(1)));
 
-        if (l2 < 0 || l2 > 7 ){
+        if (l2 < 0 || l2 > 6 ){
             return -1;
         }
 
-        int valL2 = (l2-1) * 7;
+        int valL2 = (l2) * 7;
         int valL1 = singleStringToInt(l1);
 
         if( valL1 < 0 || valL1 > 7 ){
@@ -275,6 +278,10 @@ public class GameHelper {
                 location.add(alphaToIndex(e));
             }
         return location;
+    }
+
+    public ArrayList<Battleship> getActiveShips() {
+        return activeShips;
     }
 
     //end getIncrement
