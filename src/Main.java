@@ -1,26 +1,39 @@
-import ch6.GameHelper;
+
 
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        ch6.GameHelper game = new GameHelper(3,3);
+        GameHelper game = new GameHelper(3,3);
+        int turns = 0;
+
+
 
         boolean runningGame = true;
+        System.out.println("Welcome to the Battleship game");
+        System.out.println("");
+        System.out.println("Legend: | 0:Unused space | 1:Missed | 2:Hit!!");
+        printIntArray(game.getGameGrid());
+
         while(runningGame) {
 
 
 
-            System.out.println(game.getTargets());
-            System.out.println(game.getTargetsInt());
+            ///System.out.println(game.getTargets());
+            //System.out.println(game.getTargetsInt());
 
-            printIntArray(game.getGrid());
+            //printIntArray(game.getGrid());
+            String input = game.getUserInput("Select a column");
+            String action = game.gameMove(input);
+
+            System.out.println("");
+            System.out.println("Legend: | 0:Unused space | 1:Missed | 2:Hit!!");
 
             printIntArray(game.getGameGrid());
 
-            String input = game.getUserInput("Select a column");
-            game.gameMove(input);
 
+            System.out.println(action);
+            turns++;
         }
 
     }

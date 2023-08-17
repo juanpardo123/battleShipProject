@@ -1,8 +1,9 @@
-package ch6;
-
 import java.util.*;
 
+
 public class GameHelper {
+    ArrayList<String> shipNames = new ArrayList<String>();
+
     private static final String ALPHABET = "abcdefg";
     private static final int GRID_LENGTH = 7;
     private static final int GRID_SIZE = 49;
@@ -18,27 +19,66 @@ public class GameHelper {
     private ArrayList<String> targetsAlpha = new ArrayList<>();
 
     private ArrayList<ArrayList> targetsGrouped = new ArrayList<>();
+
+    private ArrayList<Battleship> activeShips = new ArrayList<>();
     private final Random random = new Random();
 
     private int startupCount = 0;
 
     public GameHelper(int shipSize, int numShips){
         initGamegrid();
-        for(int i =0; i < numShips; i++){
+        initNames();
+
+        for(int i = 0; i < numShips; i++){
             ArrayList<String> ship = placeStartup(shipSize);
+
             targetsGrouped.add(ship);
+            Battleship ship1 = new Battleship(ship,randomName());
+            activeShips.add(ship1);
            for(String e: ship) {
             targetsAlpha.add(e);
+
            }
         }
 
+        }
 
-    }
+
 
     public ArrayList<String> getTargets() {
         return targetsAlpha;
     }
 
+    public void initNames(){
+        shipNames.add("Neptune's Fury");
+        shipNames.add("Starlight Voyager");
+        shipNames.add("Crimson Tempest");
+        shipNames.add("Serenity Dawn");
+        shipNames.add("Thundering Gale");
+        shipNames.add("Solaris Empress");
+        shipNames.add("Celestial Odyssey");
+        shipNames.add("Midnight Serpent");
+        shipNames.add("Aurora Borealis");
+        shipNames.add("Ebon Mariner");
+        shipNames.add("Ivory Horizon");
+        shipNames.add("Phoenix Requiem");
+        shipNames.add("Luna Mirage");
+        shipNames.add("Aquamarine Dream");
+        shipNames.add("Scarlet Enigma");
+        shipNames.add("Silver Wing");
+        shipNames.add("Golden Sovereign");
+        shipNames.add("Obsidian Mistral");
+        shipNames.add("Emerald Seafoam");
+        shipNames.add("Radiant Leviathan");
+    }
+    private String  randomName(){
+
+        Random rand = new Random();
+        int randomIndex = rand.nextInt(shipNames.size());
+        String name = shipNames.get(randomIndex);
+        shipNames.remove(randomIndex);
+        return name;
+    }
     public ArrayList<ArrayList> getTargetsInt() {
         return targetsGrouped;
     }
@@ -148,7 +188,6 @@ public class GameHelper {
             return -1;
         }
         String l1 = String.valueOf(alpha.charAt(0));
-        System.out.println("l1" + l1);
         int l2 = Integer.parseInt(String.valueOf(alpha.charAt(1)));
 
         if (l2 < 0 || l2 > 7 ){
@@ -198,26 +237,32 @@ public class GameHelper {
         return gameGrid;
     }
 
-    public void gameMove(String move){
+    public String gameMove(String move){
         int index = alphaToIndex(move);
 
         if(index < 0){
-            System.out.println("Invalid input please try again");
+            return "Invalid input please try again";
         }
         if(gameGrid[index] == 0){
             if(grid[index] == 1){
                 gameGrid[index] = 2;
-                System.out.println("its a hit!!!!");
+
+                return "its a hit!!!!";
             }
             else{
                 gameGrid[index] = 1;
-                System.out.println("its a miss!!!!");
+                return "its a miss!!!!";
             }
 
         }else{
-            System.out.println("That position has already been used, Try again");
+            return "That position has already been used, Try again";
         }
 
     }
+
+    public ArrayList<ArrayList> getTargetsGrouped() {
+        return targetsGrouped;
+    }
+
     //end getIncrement
 } //end class
