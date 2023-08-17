@@ -15,7 +15,7 @@ public class Battleship {
          }
 
     }
-    public void checkHit(int index) {
+    public String checkHit(int index) {
         if (!sunk) {
 
             if (hits.indexOf(false) != -1) {
@@ -25,12 +25,16 @@ public class Battleship {
 
                 } else {
                     hits.set(hitsIndex, true);
+
                 }
             }
             if(hits.indexOf(false) == -1) {
-                System.out.println("You sank The " + Name);
+
                 sunk = true;
+                return ("You sank The " + Name);
             }
+            return "";
         }
+        return "";
     }
 }

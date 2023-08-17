@@ -248,17 +248,30 @@ public class GameHelper {
             return "Invalid input please try again";
         }
         if(gameGrid[index] == 0){
-            for(Battleship e: activeShips){
-                e.checkHit(index);
-            }
+            String message = "";
+
             if(grid[index] == 1){
+                int removeIndex = -1;
+                for(Battleship e: activeShips){
+                    String result =  e.checkHit(index);
+                    System.out.println("Length " + result.length());
+                    if(result.length() > 0) {
+                        message = result;
+                        removeIndex = activeShips.indexOf(e);
+                    }
+                }
+                if (removeIndex>-1){
+                    activeShips.remove(removeIndex);
+                }
+
+
                 gameGrid[index] = 2;
 
-                return "its a hit!!!!";
+                return "its a hit!!!! " + message ;
             }
             else{
                 gameGrid[index] = 1;
-                return "its a miss!!!!";
+                return "its a miss!!!!" ;
             }
 
         }else{
